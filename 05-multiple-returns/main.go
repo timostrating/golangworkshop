@@ -8,4 +8,11 @@ func main() {
 	fmt.Println(x, y)
 }
 
+func swap(a, b string) (c, d string) {
+  tmp := b
+  b = a
+  a = tmp
+  return a, b
+}
+
 // Implement a function function that takes two strings and returns them swapped
