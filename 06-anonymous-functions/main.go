@@ -5,11 +5,8 @@ import "fmt"
 func main() {
 	items := []int{1, 2, 3, 4, 5, 6, 7, 8, 9}
 
-	/*Implement an inline lambda that squares items*/
-	//items... is syntax for passing a slice(array) to a varargs function!
-	squaredItems := applyOneEach(/* create a lambda that squares items*/, items...)
-	/*Implement an inline lambda that cubes items*/
-	cubedItems := applyOneEach(/* create a lambda that cubes items*/, items...)
+	squaredItems := applyOneEach(func(a int)int{return a*a }, items...)
+	cubedItems := applyOneEach(func(a int)int{return a*a*a }, items...)
 
 	fmt.Println("Items", items)
 	fmt.Println("Squares", squaredItems)
