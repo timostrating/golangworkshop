@@ -1,9 +1,17 @@
 package main
 
+import "fmt"
+
 type Tweet struct {
 	User    string
 	Message string
 	Likes   int
+}
+
+func (t Tweet) Print() {
+	fmt.Println(t.User)
+	fmt.Println(t.Message)
+	fmt.Println(t.Likes)
 }
 
 func main() {
