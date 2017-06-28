@@ -1,3 +1,4 @@
+
 package main
 
 import (
@@ -11,12 +12,23 @@ func main() {
 	waitgroup.Add(2)
 	go printer(&waitgroup, []string{"a", "b", "c", "d", "e", "f", "g"})
 	go printer(&waitgroup, []string{"I", "II", "III", "IV", "V", "VI", "VII"})
-
+	
 	// write a function intPrinter that prints 10 integers (one per second)
 	// and run that in a separate goroutine!
+	secondwaitgroup := sync.WaitGroup{} 
+	go intPrinter(&secondwaitgroup)
+	secondwaitgroup.Wait()
 
 	waitgroup.Wait()
 	fmt.Print("\nAll goroutines finished")
+}
+
+func intPrinter(secondwaitgroup *sync.WaitGroup) {
+	for i := 0; i < 10; i++ {
+		fmt.Print(i)
+		time.Sleep(1 * time.Second)
+	}
+	secondwaitgroup.Done()
 }
 
 func printer(waitgroup *sync.WaitGroup, slice []string) {
